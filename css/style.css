@@ -1,19 +1,19 @@
-* {
-    margin: 0;
+ul {
+    list-style: none;
     padding: 0;
-    box-sizing: border-box;
 }
 
-body {
-    font-family: "Inter", sans-serif;
-    background: #fff;
-    color: #111;
-    text-align: center;
-    padding: 20px;
+li {
+    margin: 10px 0;
 }
 
-h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+a {
+    color: #0070f3;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
