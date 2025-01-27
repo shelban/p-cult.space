@@ -1,3 +1,30 @@
+body {
+    font-family: "Inter", sans-serif;
+    background: #f8f8f8;
+    color: #111;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
 ul {
     list-style: none;
     padding: 0;
@@ -11,9 +38,17 @@ a {
     color: #0070f3;
     font-weight: bold;
     text-decoration: none;
+    font-size: 1.2rem;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Разделение секций */
+section {
+    border-top: 2px solid #ddd;
+    padding-top: 20px;
+    margin-top: 30px;
 }
 
