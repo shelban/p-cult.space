@@ -11,6 +11,7 @@ body {
     color: #f5f5f5;
     text-align: center;
     padding: 40px 20px;
+    line-height: 1.6;
 }
 
 /* Заголовок */
@@ -28,29 +29,34 @@ h2 {
     margin-top: 20px;
 }
 
-/* Блок цінностей */
+/* Блок ценностей */
 #values {
     background: #1a1a1a;
     color: #fff;
     padding: 40px 20px;
     border-radius: 12px;
     margin: 40px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 #values ul {
     list-style: none;
-    padding: 0;
     margin-top: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 #values li {
     font-size: 1.2rem;
-    padding-left: 20px;
+    padding-left: 24px;
     position: relative;
+    transition: transform 0.2s ease-in-out;
+}
+
+#values li:hover {
+    transform: scale(1.05);
 }
 
 #values li::before {
@@ -69,7 +75,7 @@ ul {
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 li {
@@ -81,9 +87,38 @@ a {
     font-weight: bold;
     text-decoration: none;
     font-size: 1.2rem;
+    transition: color 0.2s ease-in-out;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #0090ff;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    #values {
+        padding: 30px 15px;
+    }
+
+    #values li {
+        font-size: 1.1rem;
+    }
+
+    a {
+        font-size: 1.1rem;
+    }
 }
 
