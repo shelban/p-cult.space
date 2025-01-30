@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /css/
+Disallow: /js/
+Disallow: /assets/
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://p-cult.online/sitemap.xml
