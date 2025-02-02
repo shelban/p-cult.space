@@ -41,9 +41,9 @@ li {
 
 /* Блоки */
 section {
-    padding: 20px;
+    padding: 10px;
     background-color: #222;
-    margin: 20px auto;
+    margin: 10px auto;
     width: 80%;
     max-width: 800px;
     border-radius: 10px;
