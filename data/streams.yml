@@ -1,0 +1,28 @@
+streams:
+  - date: "2025-04-20"
+    title: "(МОВЧКИ) ів / раночок почався в 16:20, всіх зі свято"
+    id: "CTPfMFbvlqk"
+    url: "https://www.youtube.com/watch?v=CTPfMFbvlqk"
+    duration: "1:05:23"   
+    description: ""
+    timecodes: []            # впиши секции або залиш порожнім
+    tags: ["ранок","мовчки","twitch_restream"]
+
+  - date: "2025-04-19"
+    title: "ів / ніч"
+    id: "yyG66xhJi8A"
+    url: "https://www.youtube.com/watch?v=yyG66xhJi8A"
+    duration: "3:12:49"
+    description: ""
+    timecodes: []
+    tags: ["ніч","стрим"]
+
+  - date: "2025-04-19"
+    title: "ів / раночок / langchain (не стався, наступним разом)"
+    id: "jleaZS3CZdk"
+    url: "https://www.youtube.com/watch?v=jleaZS3CZdk"
+    duration: "TBD"
+    description: ""
+    timecodes: []
+    tags: ["ранок","langchain","стрим"]
+
