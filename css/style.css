@@ -115,3 +115,120 @@ section {
     }
 }
 
+/* Variables */
+:root {
+    --font-family: 'Inter', sans-serif;
+    --background-color: #111;
+    --text-color: #fff;
+    --secondary-text-color: #ccc;
+    --section-bg-color: #222;
+    --section-padding: 20px;
+    --section-margin: 10px auto; /* Reduced margin */
+    --section-width: 80%;
+    --section-max-width: 800px;
+    --section-border-radius: 10px;
+    --social-icon-size: 30px;
+    --social-icon-hover-opacity: 0.7;
+    --social-icon-hover-scale: 1.1;
+    --media-max-width: 600px;
+    --h1-font-size: 2em;
+    --h1-font-size-mobile: 1.8em;
+    --h2-font-size: 1.5em;
+    --h2-font-size-mobile: 1.3em;
+    --section-width-mobile: 95%;
+    --section-padding-mobile: 15px;
+    --social-icon-size-mobile: 25px;
+}
+
+/* Общие стили */
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Заголовки */
+header {
+    padding: 20px 0;
+}
+
+h1 {
+    font-size: var(--h1-font-size);
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 10px; /* Reduced margin */
+    font-size: var(--h2-font-size);
+}
+
+/* Основной текст */
+p {
+    color: var(--secondary-text-color);
+    font-size: 1em;
+    margin: 0.5em 0; /* Reduced vertical margins */
+}
+
+/* Списки */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
+
+/* Блоки */
+section {
+    padding: var(--section-padding);
+    background-color: var(--section-bg-color);
+    margin: var(--section-margin);
+    width: var(--section-width);
+    max-width: var(--section-max-width);
+    border-radius: var(--section-border-radius);
+}
+
+/* Соцсети */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-links img {
+    width: var(--social-icon-size);
+    height: var(--social-icon-size);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+social-links img:hover {
+    opacity: var(--social-icon-hover-opacity);
+    transform: scale(var(--social-icon-hover-scale));
+}
+
+/* Адаптивность */
+@media (max-width: var(--media-max-width)) {
+    h1 {
+        font-size: var(--h1-font-size-mobile);
+    }
+    
+    h2 {
+        font-size: var(--h2-font-size-mobile);
+    }
+    
+    section {
+        width: var(--section-width-mobile);
+        padding: var(--section-padding-mobile);
+    }
+    
+    .social-links img {
+        width: var(--social-icon-size-mobile);
+        height: var(--social-icon-size-mobile);
+    }
+}
+
