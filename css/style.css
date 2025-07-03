@@ -89,7 +89,7 @@ section {
     transition: opacity 0.2s, transform 0.2s;
 }
 
-social-links img:hover {
+.social-links img:hover {
     opacity: var(--social-icon-hover-opacity);
     transform: scale(var(--social-icon-hover-scale));
 }
