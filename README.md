@@ -1,4 +1,4 @@
-# p-cult.online
+# p-cult.space
 
 Static files for the kult osob site.
 

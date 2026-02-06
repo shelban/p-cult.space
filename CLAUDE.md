@@ -4,7 +4,7 @@ Guide for AI assistants working on this repository.
 
 ## Project Overview
 
-**p-cult.online** is a static single-page website for "культ особ" (Personalities Cult) — a Ukrainian community space. The site is hosted on GitHub Pages at [p-cult.online](https://p-cult.online).
+**p-cult.space** is a static single-page website for "культ особ" (Personalities Cult) — a Ukrainian community space. The site is hosted on GitHub Pages at [p-cult.space](https://p-cult.space).
 
 - **Stack:** Plain HTML5 + CSS3, no JavaScript frameworks
 - **Language:** Ukrainian (`lang="uk"`)
@@ -13,7 +13,7 @@ Guide for AI assistants working on this repository.
 ## Repository Structure
 
 ```
-p-cult.online/
+p-cult.space/
 ├── index.html          # Single-page entry point
 ├── css/
 │   └── style.css       # All styles, CSS custom properties for theming
@@ -21,7 +21,7 @@ p-cult.online/
 │   ├── *.svg           # Social media icons
 │   ├── favicon.ico
 │   └── og-image.png    # Open Graph preview image
-├── CNAME               # GitHub Pages custom domain (p-cult.online)
+├── CNAME               # GitHub Pages custom domain (p-cult.space)
 ├── sitemap.xml         # SEO sitemap
 └── README.md
 ```
