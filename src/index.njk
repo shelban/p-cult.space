@@ -1,0 +1,68 @@
+---
+layout: layouts/base.njk
+title: культ особ
+---
+
+<section class="values">
+    <h2>цінності</h2>
+    <ul>
+        <li>свобода думки <=> готовність поглянути їм у себе</li>
+        <li>щирість у погляді на себе</li>
+        <li>самоактуалізація</li>
+        <li>недеструктивність середовища, інтенцій, поглядів</li>
+        <li>збереження цікавості жити як фундаментальної рушійної сили</li>
+    </ul>
+</section>
+
+<section class="about">
+    <h2>що тут</h2>
+    <p>черговий етап розвитку ідей.</p>
+</section>
+
+{% set latestStreams = collections.streams | reverse %}
+{% if latestStreams.length > 0 %}
+<section>
+    <h2><a href="/streams/">стріми</a></h2>
+    <div class="stream-list">
+        {% for stream in latestStreams %}{% if loop.index <= 3 %}
+        <div class="stream-entry">
+            <h3><a href="{{ stream.url }}">{{ stream.data.title }}</a></h3>
+            <p class="stream-meta">{{ stream.date | dateDisplay }}</p>
+        </div>
+        {% endif %}{% endfor %}
+    </div>
+    {% if latestStreams.length > 3 %}
+    <p><a href="/streams/">всі стріми →</a></p>
+    {% endif %}
+</section>
+{% endif %}
+
+<section class="contacts">
+    <h2>посилання</h2>
+    <div class="social-links">
+        <a href="https://tiktok.com/@personalities_cult" target="_blank">
+            <img src="/assets/tiktok.svg" alt="TikTok">
+        </a>
+        <a href="https://twitch.tv/personalities_cult" target="_blank">
+            <img src="/assets/twitch.svg" alt="Twitch">
+        </a>
+        <a href="https://instagram.com/personalities_cult" target="_blank">
+            <img src="/assets/instagram.svg" alt="Instagram">
+        </a>
+        <a href="https://t.me/personalities_cult" target="_blank">
+            <img src="/assets/telegram.svg" alt="Telegram">
+        </a>
+        <a href="https://youtube.com/@personalities_cult" target="_blank">
+            <img src="/assets/youtube.svg" alt="YouTube">
+        </a>
+        <a href="https://www.reddit.com/r/personalities_cult" target="_blank">
+            <img src="/assets/reddit.svg" alt="Reddit">
+        </a>
+        <a href="https://discord.com/invite/personalities_cult" target="_blank">
+            <img src="/assets/discord.svg" alt="Discord">
+        </a>
+    </div>
+    <div class="contact-email">
+        <p>Contact Eve at: <a href="mailto:eve@p-cult.space">eve@p-cult.space</a></p>
+    </div>
+</section>

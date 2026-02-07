@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+---
+
+<section class="stream-detail">
+    <h2>{{ title }}</h2>
+    <p class="stream-meta">{{ date | dateDisplay }}{% if vod_url %} · <a href="{{ vod_url }}" target="_blank">VOD</a>{% endif %}</p>
+    {% if tags and tags.length > 1 %}
+    <div class="stream-tags">
+        {% for tag in tags %}{% if tag != "streams" %}<span>{{ tag }}</span>{% endif %}{% endfor %}
+    </div>
+    {% endif %}
+    <div class="stream-content">
+        {{ content | safe }}
+    </div>
+</section>
+
+<p><a href="/streams/">← всі стріми</a></p>
