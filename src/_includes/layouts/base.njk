@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KFJXN9GHY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-8KFJXN9GHY');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ description or 'культ особ – простір для об\'єднання за цінностями, неупередженого погляду вглиб себе та знаходження однодумців.' }}">
+    <meta property="og:title" content="{{ title or 'культ особ' }}">
+    <meta property="og:description" content="{{ og_description or 'Простір для свободи думки, щирості та цікавих розмов.' }}">
+    <meta property="og:image" content="/assets/og-image.png">
+    <title>{{ title or 'культ особ' }}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <header>
+        <h1><a href="/">культ особ</a></h1>
+        <p>транслюємо</p>
+    </header>
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+</body>
+
+</html>

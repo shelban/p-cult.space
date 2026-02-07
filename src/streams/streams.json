@@ -1,0 +1,5 @@
+{
+  "layout": "layouts/stream.njk",
+  "tags": ["streams"],
+  "permalink": "streams/{{ page.fileSlug }}/index.html"
+}

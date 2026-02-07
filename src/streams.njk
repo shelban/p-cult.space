@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: стріми — культ особ
+permalink: streams/index.html
+---
+
+<section>
+    <h2>стріми</h2>
+    <div class="stream-list">
+        {% set allStreams = collections.streams | reverse %}
+        {% for stream in allStreams %}
+        <div class="stream-entry">
+            <h3><a href="{{ stream.url }}">{{ stream.data.title }}</a></h3>
+            <p class="stream-meta">{{ stream.date | dateDisplay }}</p>
+            {% if stream.data.tags.length > 1 %}
+            <div class="stream-tags">
+                {% for tag in stream.data.tags %}{% if tag != "streams" %}<span>{{ tag }}</span>{% endif %}{% endfor %}
+            </div>
+            {% endif %}
+            <p>{{ stream.templateContent | truncate(200) }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
