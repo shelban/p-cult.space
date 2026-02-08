@@ -4,69 +4,93 @@ Guide for AI assistants working on this repository.
 
 ## Project Overview
 
-**p-cult.space** is a static single-page website for "культ особ" (Personalities Cult) — a Ukrainian community space. The site is hosted on GitHub Pages at [p-cult.space](https://p-cult.space).
+**p-cult.space** — сайт "культивація особів" (Ів, she/her/祂). Twitch Just Chatting стрімерка, єблоторгівлінг. Hosted on GitHub Pages at [p-cult.space](https://p-cult.space).
 
-- **Stack:** Plain HTML5 + CSS3, no JavaScript frameworks
-- **Language:** Ukrainian (`lang="uk"`)
+- **Stack:** Eleventy (11ty) 3.x, Nunjucks templates, CSS3
+- **Language:** Ukrainian (`lang="uk"`), mixed with Russian/English in content
 - **Theme:** Dark mode only (#111 background, white text)
+- **Domain:** p-cult.space (Cloudflare DNS → GitHub Pages)
 
 ## Repository Structure
 
 ```
 p-cult.space/
-├── index.html          # Single-page entry point
-├── css/
-│   └── style.css       # All styles, CSS custom properties for theming
-├── assets/             # SVG icons, favicon, OG image
-│   ├── *.svg           # Social media icons
-│   ├── favicon.ico
-│   └── og-image.png    # Open Graph preview image
-├── CNAME               # GitHub Pages custom domain (p-cult.space)
-├── sitemap.xml         # SEO sitemap
-└── README.md
+├── src/
+│   ├── index.njk                    # Main page
+│   ├── streams.njk                  # Streams listing page
+│   ├── streams/
+│   │   ├── streams.json             # Default frontmatter for stream posts
+│   │   └── *.md                     # Individual stream posts
+│   ├── css/
+│   │   └── style.css                # All styles, CSS custom properties
+│   ├── assets/                      # SVG icons, favicon, OG image
+│   ├── CNAME                        # GitHub Pages custom domain
+│   └── _includes/
+│       └── layouts/
+│           ├── base.njk             # Base HTML layout (head, header, GA)
+│           └── stream.njk           # Individual stream page layout
+├── eleventy.config.js               # 11ty configuration
+├── package.json                     # Node dependencies (11ty only)
+├── .github/workflows/deploy.yml     # GitHub Actions: build + deploy
+├── index.html                       # Legacy static file (NOT used by 11ty)
+├── css/style.css                    # Legacy CSS (NOT used by 11ty)
+└── CLAUDE.md
 ```
+
+**Important:** `src/` is the source of truth. Root-level `index.html` and `css/style.css` are legacy leftovers — 11ty builds from `src/` into `_site/`.
 
 ## Build & Deployment
 
-- **No build step.** Edit HTML, CSS, or assets directly and commit.
-- **Deployment:** Push to the `main` branch; GitHub Pages serves the site automatically.
-- **No CI/CD pipelines, no package manager, no dependencies.**
+- **Build:** `npm run build` (runs `eleventy`, outputs to `_site/`)
+- **Dev server:** `npm run serve` (runs `eleventy --serve`)
+- **Deployment:** Push to `main` → GitHub Actions builds with Node 20 → deploys to GitHub Pages
+- **Requires:** Node.js 18+ (locally). CI uses Node 20.
 
-## Development Workflow
+## Adding a Stream Post
 
-1. Create a feature branch from `main`
-2. Make changes to HTML/CSS/assets
-3. Commit with a descriptive message
-4. Open a pull request against `main`
-5. Merge triggers automatic GitHub Pages deployment
+Create a new file `src/streams/YYYY-MM-DD-slug.md`:
 
-Branch naming convention: `<tool>/description` (e.g., `codex/fix-css-selector`).
+```markdown
+---
+title: "назва стріму"
+date: YYYY-MM-DD
+tags:
+  - just-chatting
+vod_url: ""
+---
+
+Опис стріму.
+```
+
+The `streams.json` in the same directory provides defaults (`layout: layouts/stream.njk`, `tags: ["streams"]`, permalink pattern).
 
 ## Code Conventions
 
-### HTML
-- Semantic HTML5 elements: `<header>`, `<main>`, `<section>`
-- Class names use kebab-case (e.g., `social-links`, `contact-email`)
-- All user-facing text is in Ukrainian
+### Templates (Nunjucks)
+- Layouts in `src/_includes/layouts/`
+- `base.njk` — base HTML with GA, meta tags, header
+- `stream.njk` — extends base, adds stream metadata and back-link
+- Content inserted via `{{ content | safe }}`
 
 ### CSS
-- CSS custom properties defined in `:root` for theming (colors, spacing, sizing)
+- CSS custom properties in `:root` for theming
 - Font: Inter (sans-serif)
-- Responsive breakpoint at 600px using `@media`
-- Comments in the CSS are in Russian (legacy)
-- Kebab-case for class names and variable names (e.g., `--section-bg-color`)
+- Responsive breakpoint at 600px
+- Kebab-case for class names and variables
 
-### Assets
-- Social media icons stored as SVG in `assets/`
-- Favicon as ICO format
-- Open Graph image as PNG
+### Content
+- User-facing text is Ukrainian (mixed with Russian/English where natural)
+- Tone: informal, personal, expressive
 
-## Known Issues
+## Infrastructure
 
-- **Duplicated CSS rules:** `css/style.css` contains the full ruleset twice (lines 1-116 and 118-233). The second copy has a bug on line 209 where `.social-links img:hover` is missing the leading dot (reads `social-links img:hover`).
-- **CSS variables in `@media` queries:** `var(--media-max-width)` inside `@media (max-width: ...)` is not supported by most browsers. The media query breakpoint should use a literal value (e.g., `600px`).
+- **GitHub account:** shelban
+- **Cloudflare:** DNS proxy to GitHub Pages (zone: p-cult.space)
+- **Google Analytics 4:** `G-8KFJXN9GHY` in `base.njk`
+- **Email:** eve@p-cult.space (privateemail via Cloudflare MX records)
 
-## External Services
+## Social Links
 
-- **Google Analytics 4:** Tracking ID `G-8KFJXN9GHY` is embedded in `index.html`
-- **GitHub Pages:** Serves the site from the `main` branch via the `CNAME` file
+All use handle `personalities_cult`:
+- TikTok, Twitch, Instagram, Telegram, YouTube, Reddit
+- Discord: `discord.gg/5n4TMSGxJn`
