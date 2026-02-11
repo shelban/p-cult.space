@@ -3,16 +3,50 @@ layout: layouts/base.njk
 ---
 
 <section class="stream-detail">
+    {% if thumbnail %}
+    <div class="stream-thumbnail">
+        <img src="{{ thumbnail }}" alt="{{ title }}" />
+    </div>
+    {% endif %}
+
     <h2>{{ title }}</h2>
-    <p class="stream-meta">{{ date | dateDisplay }}{% if vod_url %} · <a href="{{ vod_url }}" target="_blank">VOD</a>{% endif %}</p>
+
+    <p class="stream-meta">
+        {{ date | dateDisplay }}
+        {% if duration %} · {{ duration }}{% endif %}
+        {% if vod_url %} · <a href="{{ vod_url }}" target="_blank">VOD</a>{% endif %}
+    </p>
+
     {% if tags and tags.length > 1 %}
     <div class="stream-tags">
         {% for tag in tags %}{% if tag != "streams" %}<span>{{ tag }}</span>{% endif %}{% endfor %}
     </div>
     {% endif %}
+
     <div class="stream-content">
         {{ content | safe }}
     </div>
+
+    {% if timestamps and timestamps.length > 0 %}
+    <div class="stream-timestamps">
+        <h3>таймкоди</h3>
+        <ul>
+            {% for ts in timestamps %}
+            <li>
+                {% if vod_url %}
+                <a href="{{ vod_url }}&t={{ ts.time | timestampToSeconds }}" target="_blank" class="timestamp-link">
+                    <span class="timestamp-time">{{ ts.time }}</span>
+                    <span class="timestamp-desc">{{ ts.description }}</span>
+                </a>
+                {% else %}
+                <span class="timestamp-time">{{ ts.time }}</span>
+                <span class="timestamp-desc">{{ ts.description }}</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 </section>
 
 <p><a href="/streams/">← всі стріми</a></p>

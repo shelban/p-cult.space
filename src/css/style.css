@@ -20,6 +20,10 @@
     --section-width-mobile: 95%;
     --section-padding-mobile: 15px;
     --social-icon-size-mobile: 25px;
+    --thumbnail-border-radius: 8px;
+    --thumbnail-detail-max-width: 800px;
+    --thumbnail-entry-size: 120px;
+    --timestamp-gap: 8px;
 }
 
 body {
@@ -138,6 +142,112 @@ a {
     color: var(--text-color);
 }
 
+/* Stream thumbnails */
+.stream-thumbnail {
+    margin-bottom: 1.5em;
+    border-radius: var(--thumbnail-border-radius);
+    overflow: hidden;
+    max-width: var(--thumbnail-detail-max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stream-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.stream-entry {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.stream-entry-thumbnail {
+    flex-shrink: 0;
+    width: var(--thumbnail-entry-size);
+    border-radius: var(--thumbnail-border-radius);
+    overflow: hidden;
+}
+
+.stream-entry-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.2s;
+}
+
+.stream-entry-thumbnail a:hover img {
+    opacity: var(--social-icon-hover-opacity);
+}
+
+.stream-entry-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Stream timestamps */
+.stream-timestamps {
+    margin-top: 2em;
+    padding-top: 1.5em;
+    border-top: 1px solid #333;
+}
+
+.stream-timestamps h3 {
+    margin: 0 0 1em;
+    font-size: 1.2em;
+    text-align: left;
+}
+
+.stream-timestamps ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stream-timestamps li {
+    margin-bottom: var(--timestamp-gap);
+}
+
+.timestamp-link {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    background-color: #1a1a1a;
+    transition: background-color 0.2s;
+}
+
+.timestamp-link:hover {
+    background-color: #2a2a2a;
+}
+
+.timestamp-time {
+    font-family: 'Courier New', monospace;
+    color: var(--secondary-text-color);
+    font-size: 0.9em;
+    white-space: nowrap;
+    min-width: 3.5em;
+}
+
+.timestamp-desc {
+    color: var(--text-color);
+    flex: 1;
+}
+
+/* Stream detail content alignment */
+.stream-detail {
+    text-align: left;
+}
+
+.stream-detail h2 {
+    text-align: left;
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: var(--h1-font-size-mobile);
@@ -155,5 +265,15 @@ a {
     .social-links img {
         width: var(--social-icon-size-mobile);
         height: var(--social-icon-size-mobile);
+    }
+
+    /* Mobile: stack thumbnails vertically */
+    .stream-entry {
+        flex-direction: column;
+    }
+
+    .stream-entry-thumbnail {
+        width: 100%;
+        max-width: 300px;
     }
 }
