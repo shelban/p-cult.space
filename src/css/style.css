@@ -1,6 +1,11 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Azeret+Mono:wght@400;500;700&display=swap');
+
 /* Variables */
 :root {
     --font-family: 'Inter', sans-serif;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Azeret Mono', monospace;
     --background-color: #111;
     --text-color: #fff;
     --secondary-text-color: #ccc;
@@ -24,6 +29,14 @@
     --thumbnail-detail-max-width: 800px;
     --thumbnail-entry-size: 120px;
     --timestamp-gap: 8px;
+
+    /* Neon colors */
+    --neon-pink: #ff006e;
+    --neon-green: #06ffa5;
+    --neon-blue: #00d9ff;
+    --neon-purple: #b83dff;
+    --neon-yellow: #ffea00;
+    --neon-red: #ff3131;
 }
 
 body {
@@ -37,6 +50,31 @@ body {
 
 header {
     padding: 20px 0;
+}
+
+.main-nav {
+    margin-top: 1.5em;
+    display: flex;
+    gap: 1.5em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    padding: 0.5em 1em;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.main-nav a:hover {
+    color: var(--text-color);
+    border-color: var(--text-color);
 }
 
 h1 {
@@ -248,6 +286,411 @@ a {
     text-align: left;
 }
 
+/* === SUPPORT PAGE - NEON BRUTALISM === */
+
+.support-hero {
+    padding: 4em 2em 3em;
+    background-color: transparent;
+    margin: 0 auto 2em;
+    width: 100%;
+    max-width: none;
+}
+
+.support-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 800;
+    margin: 0 0 0.3em;
+    letter-spacing: -0.02em;
+}
+
+.neon-text {
+    position: relative;
+    display: inline-block;
+    color: var(--text-color);
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.5),
+        0 0 30px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(255, 0, 110, 0.5),
+        0 0 70px rgba(255, 0, 110, 0.3),
+        0 0 80px rgba(255, 0, 110, 0.2);
+    animation: flicker 3s infinite alternate;
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow:
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 255, 255, 0.5),
+            0 0 30px rgba(255, 255, 255, 0.3),
+            0 0 40px rgba(255, 0, 110, 0.5),
+            0 0 70px rgba(255, 0, 110, 0.3),
+            0 0 80px rgba(255, 0, 110, 0.2);
+    }
+    20%, 24%, 55% {
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.5),
+            0 0 10px rgba(255, 255, 255, 0.3);
+    }
+}
+
+.support-subtitle {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+}
+
+.support-intro {
+    max-width: 700px;
+    margin: 0 auto 3em;
+    padding: 2em;
+    background-color: transparent;
+    text-align: left;
+    line-height: 1.8;
+}
+
+.support-intro p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 1.2em;
+}
+
+.support-intro p:last-child {
+    color: var(--secondary-text-color);
+    font-style: italic;
+}
+
+.support-main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2em 2em;
+}
+
+.support-card-large {
+    position: relative;
+    background-color: #0a0a0a;
+    border: 3px solid;
+    border-radius: 0;
+    padding: 4em 3em;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s;
+    overflow: hidden;
+}
+
+.support-card-large::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, transparent, currentColor, transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+    animation: rotate-border 4s linear infinite;
+}
+
+.support-card-large:hover::before {
+    opacity: 0.3;
+}
+
+.support-card-large:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.support-card-large:hover .card-glow {
+    opacity: 0.2;
+    animation: pulse-glow 2s infinite;
+}
+
+.card-title-large {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 0.4em;
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.card-description-large {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--secondary-text-color);
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+.neon-button-large {
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 1.2em 2.5em;
+    background-color: transparent;
+    border: 3px solid;
+    color: var(--text-color);
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    transition: all 0.3s;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.neon-button-large span {
+    position: relative;
+    z-index: 2;
+}
+
+.neon-button-large:hover .button-glow {
+    opacity: 0.25;
+    animation: button-pulse 1.5s infinite;
+}
+
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2em;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2em 3em;
+}
+
+.support-card {
+    position: relative;
+    background-color: #0a0a0a;
+    border: 2px solid;
+    border-radius: 0;
+    padding: 2.5em 2em;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s;
+    overflow: hidden;
+}
+
+.support-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, transparent, currentColor, transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+    animation: rotate-border 4s linear infinite;
+}
+
+@keyframes rotate-border {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.support-card:hover::before {
+    opacity: 0.3;
+}
+
+.support-card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    border-radius: 50%;
+    filter: blur(60px);
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.support-card:hover .card-glow {
+    opacity: 0.15;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.15; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.25; }
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5em;
+    letter-spacing: -0.01em;
+}
+
+.card-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--secondary-text-color);
+    margin-bottom: 1.5em;
+}
+
+.card-action {
+    margin-top: 1.5em;
+}
+
+.neon-button {
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.8em 1.5em;
+    background-color: transparent;
+    border: 2px solid;
+    color: var(--text-color);
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+.neon-button span {
+    position: relative;
+    z-index: 2;
+}
+
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.neon-button:hover .button-glow {
+    opacity: 0.2;
+    animation: button-pulse 1.5s infinite;
+}
+
+@keyframes button-pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
+
+.card-number,
+.card-address {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.8em;
+    background-color: #000;
+    border: 1px solid;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.05em;
+    word-break: break-all;
+}
+
+.card-hint {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Color variants */
+.neon-pink {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+}
+.neon-pink .card-glow { background: var(--neon-pink); }
+.neon-pink .button-glow { background: var(--neon-pink); }
+.neon-pink .card-number,
+.neon-pink .card-address { border-color: var(--neon-pink); }
+
+.neon-green {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+.neon-green .card-glow { background: var(--neon-green); }
+.neon-green .button-glow { background: var(--neon-green); }
+
+.neon-blue {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+}
+.neon-blue .card-glow { background: var(--neon-blue); }
+.neon-blue .button-glow { background: var(--neon-blue); }
+
+.neon-purple {
+    border-color: var(--neon-purple);
+    color: var(--neon-purple);
+}
+.neon-purple .card-glow { background: var(--neon-purple); }
+.neon-purple .card-number,
+.neon-purple .card-address { border-color: var(--neon-purple); }
+
+.neon-yellow {
+    border-color: var(--neon-yellow);
+    color: var(--neon-yellow);
+}
+.neon-yellow .card-glow { background: var(--neon-yellow); }
+.neon-yellow .card-number,
+.neon-yellow .card-address { border-color: var(--neon-yellow); }
+
+.neon-red {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+}
+.neon-red .card-glow { background: var(--neon-red); }
+.neon-red .button-glow { background: var(--neon-red); }
+
+.support-footer {
+    padding: 3em 2em;
+    background-color: transparent;
+    margin: 2em auto 0;
+    width: 100%;
+    max-width: none;
+}
+
+.footer-text {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1em;
+}
+
+.neon-text-small {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--neon-green);
+    text-shadow:
+        0 0 10px rgba(6, 255, 165, 0.6),
+        0 0 20px rgba(6, 255, 165, 0.4),
+        0 0 30px rgba(6, 255, 165, 0.2);
+}
+
+.footer-fine-print {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: var(--h1-font-size-mobile);
@@ -275,5 +718,63 @@ a {
     .stream-entry-thumbnail {
         width: 100%;
         max-width: 300px;
+    }
+
+    /* Support page mobile */
+    .support-hero {
+        padding: 2em 1em 2em;
+    }
+
+    .support-title {
+        font-size: clamp(2rem, 12vw, 4rem);
+    }
+
+    .support-intro {
+        padding: 1.5em;
+        margin-bottom: 2em;
+    }
+
+    .support-intro p {
+        font-size: 1rem;
+    }
+
+    .support-main {
+        padding: 0 1em 2em;
+    }
+
+    .support-card-large {
+        padding: 3em 2em;
+    }
+
+    .card-title-large {
+        font-size: 2.2rem;
+    }
+
+    .card-description-large {
+        font-size: 1rem;
+    }
+
+    .neon-button-large {
+        font-size: 0.95rem;
+        padding: 1em 1.5em;
+    }
+
+    .support-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+        padding: 0 1em 2em;
+    }
+
+    .support-card {
+        padding: 2em 1.5em;
+    }
+
+    .card-title {
+        font-size: 1.6rem;
+    }
+
+    .neon-button {
+        font-size: 0.8rem;
+        padding: 0.7em 1.2em;
     }
 }
