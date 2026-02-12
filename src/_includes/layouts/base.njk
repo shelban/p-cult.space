@@ -25,6 +25,11 @@
 <body>
 
     <header>
+        <div class="header-logo">
+            <a href="/" class="logo-link">
+                <img src="/assets/logo-hero.png" alt="культивація особів" class="logo-hero">
+            </a>
+        </div>
         <h1><a href="/">культивація особ<span class="name-highlight">ів</span></a></h1>
         <p>переосмислюємо-транслюємо-самоактуалізуємось<br>все як у всіх</p>
         <nav class="main-nav">
@@ -34,6 +39,9 @@
             <a href="/support/">підтримати</a>
         </nav>
     </header>
+
+    {# Background watermark #}
+    <div class="logo-watermark" aria-hidden="true"></div>
 
     <main>
         {{ content | safe }}

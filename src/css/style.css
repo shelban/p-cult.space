@@ -220,6 +220,134 @@ header {
     border-color: var(--text-color);
 }
 
+/* === LOGO INTEGRATION === */
+
+/* Hero logo in header */
+.header-logo {
+    margin: 0 auto 2em;
+    width: 160px;
+    height: 160px;
+    position: relative;
+    opacity: 0;
+    animation: logo-entrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+}
+
+.logo-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.logo-hero {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4))
+            drop-shadow(0 0 40px rgba(255, 0, 85, 0.3));
+    animation: logo-float 6s ease-in-out infinite, logo-glow 3s ease-in-out infinite;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logo-link:hover .logo-hero {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.8))
+            drop-shadow(0 0 60px rgba(255, 0, 85, 0.6))
+            drop-shadow(0 0 80px rgba(255, 237, 78, 0.4));
+    animation: logo-float 6s ease-in-out infinite, logo-glow 3s ease-in-out infinite, logo-glitch-shake 0.3s ease-in-out;
+}
+
+/* Logo entrance animation */
+@keyframes logo-entrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-180deg) translateY(-100px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.1) rotate(10deg) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg) translateY(0);
+    }
+}
+
+/* Floating animation */
+@keyframes logo-float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(-1deg);
+    }
+    75% {
+        transform: translateY(-12px) rotate(1deg);
+    }
+}
+
+/* Glowing pulse */
+@keyframes logo-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4))
+                drop-shadow(0 0 40px rgba(255, 0, 85, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.6))
+                drop-shadow(0 0 50px rgba(255, 0, 85, 0.5))
+                drop-shadow(0 0 70px rgba(255, 237, 78, 0.3));
+    }
+}
+
+/* Glitch shake on hover */
+@keyframes logo-glitch-shake {
+    0%, 100% { transform: translate(0, 0) scale(1.1) rotate(5deg); }
+    10% { transform: translate(-2px, 2px) scale(1.1) rotate(5deg); }
+    20% { transform: translate(2px, -2px) scale(1.1) rotate(5deg); }
+    30% { transform: translate(-2px, -2px) scale(1.1) rotate(5deg); }
+    40% { transform: translate(2px, 2px) scale(1.1) rotate(5deg); }
+    50% { transform: translate(-1px, 1px) scale(1.1) rotate(5deg); }
+    60% { transform: translate(1px, -1px) scale(1.1) rotate(5deg); }
+}
+
+/* Background watermark */
+.logo-watermark {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    width: 60vw;
+    height: 60vw;
+    max-width: 800px;
+    max-height: 800px;
+    background-image: url('/assets/logo-watermark.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: -1;
+    animation: watermark-drift 80s ease-in-out infinite;
+}
+
+@keyframes watermark-drift {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+    }
+    25% {
+        transform: translate(-48%, -52%) rotate(-12deg) scale(1.05);
+    }
+    50% {
+        transform: translate(-52%, -50%) rotate(-18deg) scale(0.95);
+    }
+    75% {
+        transform: translate(-50%, -48%) rotate(-20deg) scale(1.02);
+    }
+}
+
 h1 {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 8vw, 5rem);
@@ -860,7 +988,169 @@ a {
     text-align: left;
 }
 
-/* === SUPPORT PAGE - NEON BRUTALISM === */
+/* === SUPPORT PAGE - MINIMAL VERSION === */
+
+.support-minimal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 4em 2em;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+}
+
+.support-statement {
+    margin-bottom: 3em;
+}
+
+.support-lead {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--secondary-text-color);
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5em;
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out 0.2s forwards;
+}
+
+.support-cult {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.2;
+    opacity: 0;
+    animation: fade-in-up 1s ease-out 0.4s forwards;
+}
+
+.cult-word {
+    color: var(--text-color);
+}
+
+.cult-highlight {
+    position: relative;
+    color: var(--chaos-yellow);
+    text-shadow:
+        0 0 15px rgba(255, 237, 78, 0.6),
+        0 0 30px rgba(255, 237, 78, 0.4),
+        0 0 45px rgba(255, 237, 78, 0.2);
+    animation: cult-glow 3s ease-in-out infinite;
+}
+
+@keyframes cult-glow {
+    0%, 100% {
+        text-shadow:
+            0 0 15px rgba(255, 237, 78, 0.6),
+            0 0 30px rgba(255, 237, 78, 0.4),
+            0 0 45px rgba(255, 237, 78, 0.2);
+    }
+    50% {
+        text-shadow:
+            0 0 25px rgba(255, 237, 78, 0.9),
+            0 0 50px rgba(255, 237, 78, 0.6),
+            0 0 75px rgba(255, 237, 78, 0.3),
+            0 0 100px rgba(255, 237, 78, 0.15);
+    }
+}
+
+.support-link {
+    opacity: 0;
+    animation: fade-in-up 0.8s ease-out 0.6s forwards;
+}
+
+.donate-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8em;
+    padding: 1.2em 2.5em;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 2px solid var(--chaos-green);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.donate-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.donate-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.donate-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    border-color: var(--chaos-yellow);
+    box-shadow:
+        0 0 20px rgba(0, 255, 136, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.donate-icon {
+    font-size: 1.5em;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 8px rgba(255, 237, 78, 0.6));
+}
+
+.donate-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* Mobile optimization for minimal support page */
+@media (max-width: 600px) {
+    .support-minimal {
+        min-height: 50vh;
+        padding: 3em 1.5em;
+    }
+
+    .support-lead {
+        font-size: 1rem;
+    }
+
+    .support-cult {
+        font-size: clamp(2rem, 10vw, 3.5rem);
+    }
+
+    .support-statement {
+        margin-bottom: 2em;
+    }
+
+    .donate-button {
+        padding: 1em 2em;
+        font-size: 1rem;
+    }
+
+    .donate-icon {
+        font-size: 1.3em;
+    }
+}
+
+/* === SUPPORT PAGE - NEON BRUTALISM (LEGACY) === */
 
 .support-hero {
     padding: 4em 2em 3em;
@@ -1630,5 +1920,24 @@ a {
     .friend-links img {
         width: 28px;
         height: 28px;
+    }
+
+    /* Logo mobile optimization */
+    .header-logo {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1.5em;
+    }
+
+    .logo-hero {
+        /* Reduce animations on mobile for performance */
+        animation: logo-float 8s ease-in-out infinite;
+    }
+
+    .logo-watermark {
+        width: 80vw;
+        height: 80vw;
+        opacity: 0.015;
+        animation: none; /* Disable drift on mobile */
     }
 }
