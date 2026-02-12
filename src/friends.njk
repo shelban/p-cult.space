@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+title: друзі культу — культивація особів
+permalink: friends/index.html
+---
+
+{# Floating decorative elements (reuse home page pattern) #}
+<div class="chaos-decor chaos-circle chaos-decor-1"></div>
+<div class="chaos-decor chaos-square chaos-decor-2"></div>
+<div class="chaos-decor chaos-circle chaos-decor-3"></div>
+<div class="chaos-decor chaos-square chaos-decor-4"></div>
+<div class="chaos-decor chaos-circle chaos-decor-5"></div>
+
+<section class="friends-intro">
+    <h2>друзі культу</h2>
+</section>
+
+<section class="friends-container">
+    {% if collections.friends.length > 0 %}
+    <div class="friends-grid">
+        {% for friend in collections.friends %}
+        <article class="friend-card">
+            {% if friend.data.avatar %}
+            <div class="friend-avatar">
+                <img src="{{ friend.data.avatar }}" alt="{{ friend.data.name }}" loading="lazy">
+            </div>
+            {% endif %}
+
+            <h3 class="friend-name">{{ friend.data.name }}</h3>
+
+            {% if friend.data.bio %}
+            <p class="friend-bio">{{ friend.data.bio }}</p>
+            {% endif %}
+
+            {% if friend.data.links %}
+            <div class="friend-links">
+                {% for link in friend.data.links %}
+                <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" title="{{ link.platform }}">
+                    <img src="/assets/{{ link.platform }}.svg" alt="{{ link.platform }}">
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="friends-empty">Поки що тут порожньо, але незабаром з'являться цікаві люди!</p>
+    {% endif %}
+</section>

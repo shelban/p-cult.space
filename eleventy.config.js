@@ -11,6 +11,27 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  // Friends collection with random sorting (Fisher-Yates shuffle)
+  eleventyConfig.addCollection("friends", function (collectionApi) {
+    const friends = collectionApi.getFilteredByGlob("src/friends/*.md");
+
+    // Separate friends with manual order vs. random order
+    const withOrder = friends.filter(f => f.data.order !== undefined);
+    const withoutOrder = friends.filter(f => f.data.order === undefined);
+
+    // Sort manual-order friends by order field
+    withOrder.sort((a, b) => a.data.order - b.data.order);
+
+    // Randomize the rest (Fisher-Yates shuffle)
+    for (let i = withoutOrder.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [withoutOrder[i], withoutOrder[j]] = [withoutOrder[j], withoutOrder[i]];
+    }
+
+    // Manual-order friends first, then randomized
+    return [...withOrder, ...withoutOrder];
+  });
+
   // Date formatting filter
   eleventyConfig.addFilter("dateDisplay", function (date) {
     return new Date(date).toLocaleDateString("uk-UA", {
