@@ -18,16 +18,22 @@ p-cult.space/
 ├── src/
 │   ├── index.njk                    # Main page
 │   ├── streams.njk                  # Streams listing page
+│   ├── friends.njk                  # Friends listing page
 │   ├── streams/
 │   │   ├── streams.json             # Default frontmatter for stream posts
 │   │   └── *.md                     # Individual stream posts
+│   ├── friends/
+│   │   ├── friends.json             # Default frontmatter for friend entries
+│   │   └── *.md                     # Individual friend profiles
 │   ├── css/
 │   │   └── style.css                # All styles, CSS custom properties
 │   ├── assets/
 │   │   ├── thumbnails/              # Stream preview images
+│   │   ├── avatars/                 # Friend avatar images
 │   │   └── ...                      # SVG icons, favicon, OG image
 │   ├── CNAME                        # GitHub Pages custom domain
 │   └── _includes/
+│       ├── chaos-decorations.njk    # Reusable floating decoratives
 │       └── layouts/
 │           ├── base.njk             # Base HTML layout (head, header, GA)
 │           └── stream.njk           # Individual stream page layout
@@ -84,6 +90,43 @@ timestamps:                                     # Optional: clickable timestamps
 
 The `streams.json` in the same directory provides defaults (`layout: layouts/stream.njk`, `tags: ["streams"]`, permalink pattern).
 
+## Adding a Friend
+
+Create a new file `src/friends/username-slug.md`:
+
+```markdown
+---
+name: "Ім'я Друга"
+avatar: "/assets/avatars/username.jpg"         # Optional: path to avatar image
+bio: "Короткий опис. Може бути декілька речень про те, чим людина займається."
+order: 1                                        # Optional: manual priority (lower = first)
+links:
+  - url: "https://twitch.tv/username"
+    platform: "twitch"
+  - url: "https://youtube.com/@username"
+    platform: "youtube"
+---
+```
+
+**Field reference:**
+- `name` — **Required**: Display name
+- `avatar` — Optional path to image in `src/assets/avatars/` (falls back to broken image if missing)
+- `bio` — Optional short description
+- `order` — Optional manual sorting (lower numbers appear first, before randomized friends)
+- `links` — Optional array of `{url, platform}` objects
+  - `platform` values: `twitch`, `youtube`, `instagram`, `telegram`, `tiktok`, `discord`, `reddit`
+
+**Avatar setup:**
+1. Add image to `src/assets/avatars/username.jpg` (recommended: 240x240px or larger)
+2. Reference in frontmatter: `avatar: "/assets/avatars/username.jpg"`
+
+**Random order:**
+- Friends are **shuffled on each build** using Fisher-Yates algorithm
+- Use `order` field to manually pin important friends at top
+- Friends with `order` field appear first (sorted by order value), then randomized friends
+
+The `friends.json` in the same directory provides defaults (`layout: layouts/base.njk`, `tags: ["friends"]`, `permalink: false` — no individual pages).
+
 ## Eleventy Filters
 
 Custom filters defined in `eleventy.config.js`:
@@ -113,10 +156,11 @@ Custom filters defined in `eleventy.config.js`:
 
 ### CSS
 - CSS custom properties in `:root` for theming
-- Font: Inter (sans-serif)
+- Fonts: Manrope (body), Archivo Black (display), Bebas Neue (alt display), Azeret Mono (mono)
 - Responsive breakpoint at 600px
 - Kebab-case for class names and variables
-- Dark theme: `#111` background, `#222` sections, `#ccc` secondary text
+- Dark theme: `#0a0a0a` background, `#1a1a1a` sections, `#bbb` secondary text
+- Chaos colors: green, yellow, pink, cyan, orange, purple (defined as CSS variables)
 
 ### Content
 - User-facing text is Ukrainian (mixed with Russian/English where natural)
