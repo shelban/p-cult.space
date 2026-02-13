@@ -19,6 +19,7 @@ p-cult.space/
 │   ├── index.njk                    # Main page
 │   ├── streams.njk                  # Streams listing page
 │   ├── friends.njk                  # Friends listing page
+│   ├── support.njk                  # Support/donation page
 │   ├── streams/
 │   │   ├── streams.json             # Default frontmatter for stream posts
 │   │   └── *.md                     # Individual stream posts
@@ -46,6 +47,19 @@ p-cult.space/
 ```
 
 **Important:** `src/` is the source of truth. Root-level `index.html` and `css/style.css` are legacy leftovers — 11ty builds from `src/` into `_site/`.
+
+## Design System
+
+**Chaos Aesthetic** — "ADHD Energy Maximalism" with controlled entropy:
+- **Typography:** Glitch effects on headings (`text-shadow` with cyan/pink)
+- **Layout:** Scattered rotations (random `rotate()` transforms)
+- **Decoratives:** Floating elements via `chaos-decorations.njk` component
+- **Colors:** Bright chaos palette (green #00ff88, yellow #ffed4e, pink #ff0055, cyan #00f0ff)
+- **Mobile:** Rotations disabled, single-column for readability
+
+**Reusable component:**
+- `{% include "chaos-decorations.njk" %}` — adds 5 floating decorative elements
+- Used on: index, streams list, friends pages
 
 ## Build & Deployment
 
@@ -88,6 +102,11 @@ timestamps:                                     # Optional: clickable timestamps
   - `time` format: `HH:MM:SS` (always with hours for consistency)
   - Generates clickable YouTube links with `&t=seconds`
 
+**Display behavior:**
+- First 10 timestamps visible by default
+- Remaining timestamps collapsed in `<details>` element ("показати всі")
+- Each timestamp generates clickable YouTube link with `&t=seconds` parameter
+
 The `streams.json` in the same directory provides defaults (`layout: layouts/stream.njk`, `tags: ["streams"]`, permalink pattern).
 
 ## Adding a Friend
@@ -127,6 +146,26 @@ links:
 
 The `friends.json` in the same directory provides defaults (`layout: layouts/base.njk`, `tags: ["friends"]`, `permalink: false` — no individual pages).
 
+## Adding a New Page
+
+Create `src/pagename.njk`:
+
+```nunjucks
+---
+layout: layouts/base.njk
+title: "Назва Сторінки"
+permalink: /pagename/
+---
+
+<h1>{{ title }}</h1>
+<p>Content here...</p>
+
+{# Optional: add chaos decorations #}
+{% include "chaos-decorations.njk" %}
+```
+
+Page will build to `_site/pagename/index.html` → accessible at `/pagename/`
+
 ## Eleventy Filters
 
 Custom filters defined in `eleventy.config.js`:
@@ -165,6 +204,24 @@ Custom filters defined in `eleventy.config.js`:
 ### Content
 - User-facing text is Ukrainian (mixed with Russian/English where natural)
 - Tone: informal, personal, expressive
+
+## Common Issues
+
+**Build fails locally:**
+- Requires Node.js 18+ (check: `node --version`)
+- If Node 12 installed: use CI build or upgrade Node
+
+**Missing images:**
+- Thumbnails/avatars in frontmatter must exist in `src/assets/`
+- Missing files → broken image displayed (no build error)
+
+**Stream not appearing:**
+- Check `date` field format: `YYYY-MM-DD`
+- Streams sort by date descending (newest first)
+
+**Friend order randomized:**
+- Expected behavior (Fisher-Yates shuffle on each build)
+- Pin friends to top with `order: 1` field
 
 ## Infrastructure
 
