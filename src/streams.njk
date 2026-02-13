@@ -4,34 +4,41 @@ title: стріми — культ особ
 permalink: streams/index.html
 ---
 
-<section>
+{% include "chaos-decorations.njk" %}
+
+<section class="streams-intro">
     <h2>стріми</h2>
-    <div class="stream-list">
-        {% set allStreams = collections.streams | reverse %}
-        {% for stream in allStreams %}
-        <div class="stream-entry">
-            {% if stream.data.thumbnail %}
-            <div class="stream-entry-thumbnail">
-                <a href="{{ stream.url }}">
-                    <img src="{{ stream.data.thumbnail }}" alt="{{ stream.data.title }}" />
-                </a>
+    <p>Архів трансляцій, роздумів та єблоторгівлінгу</p>
+</section>
+
+<div class="streams-grid-container">
+    {% set allStreams = collections.streams | reverse %}
+    {% for stream in allStreams %}
+    <article class="stream-card">
+        {% if stream.data.thumbnail %}
+        <a href="{{ stream.url }}" class="stream-card-thumbnail">
+            <img src="{{ stream.data.thumbnail }}" alt="{{ stream.data.title }}" />
+        </a>
+        {% endif %}
+
+        <div class="stream-card-content">
+            <h3 class="stream-card-title">
+                <a href="{{ stream.url }}">{{ stream.data.title }}</a>
+            </h3>
+
+            <p class="stream-card-meta">
+                {{ stream.date | dateDisplay }}
+                {% if stream.data.duration %} · {{ stream.data.duration }}{% endif %}
+            </p>
+
+            {% if stream.data.tags.length > 1 %}
+            <div class="stream-card-tags">
+                {% for tag in stream.data.tags %}{% if tag != "streams" %}<span class="stream-tag">{{ tag }}</span>{% endif %}{% endfor %}
             </div>
             {% endif %}
 
-            <div class="stream-entry-content">
-                <h3><a href="{{ stream.url }}">{{ stream.data.title }}</a></h3>
-                <p class="stream-meta">
-                    {{ stream.date | dateDisplay }}
-                    {% if stream.data.duration %} · {{ stream.data.duration }}{% endif %}
-                </p>
-                {% if stream.data.tags.length > 1 %}
-                <div class="stream-tags">
-                    {% for tag in stream.data.tags %}{% if tag != "streams" %}<span>{{ tag }}</span>{% endif %}{% endfor %}
-                </div>
-                {% endif %}
-                <p>{{ stream.templateContent | truncate(200) }}</p>
-            </div>
+            <p class="stream-card-excerpt">{{ stream.templateContent | truncate(150) }}</p>
         </div>
-        {% endfor %}
-    </div>
-</section>
+    </article>
+    {% endfor %}
+</div>

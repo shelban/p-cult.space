@@ -1734,6 +1734,531 @@ a {
     filter: brightness(1.2) drop-shadow(0 0 15px rgba(0, 255, 136, 0.6));
 }
 
+/* === STREAMS PAGE - CHAOS GRID === */
+
+.streams-intro {
+    width: auto;
+    max-width: 650px;
+    margin: 40px auto 60px;
+    padding: 30px 40px;
+    background-color: var(--section-bg-color);
+    border-radius: var(--section-border-radius);
+    transform: rotate(-1deg);
+    animation: fade-in-up 0.8s ease-out;
+    border-left: 4px solid var(--chaos-cyan);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.streams-intro h2 {
+    font-family: var(--font-display-alt);
+    margin: 0 0 0.3em;
+    text-align: left;
+}
+
+.streams-intro p {
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+    margin: 0;
+    text-align: left;
+}
+
+.streams-grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px 30px;
+}
+
+/* Stream card with chaos aesthetic */
+.stream-card {
+    background-color: var(--section-bg-color);
+    border-radius: var(--section-border-radius);
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    animation: fade-in-up 0.8s ease-out backwards;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transform: rotate(var(--card-rotation, 0deg));
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scattered rotations and chaos borders */
+.stream-card:nth-child(6n+1) {
+    --card-rotation: -1.5deg;
+    border-left: 3px solid var(--chaos-green);
+    animation-delay: 0.1s;
+}
+
+.stream-card:nth-child(6n+2) {
+    --card-rotation: 1deg;
+    border-right: 3px solid var(--chaos-pink);
+    animation-delay: 0.15s;
+}
+
+.stream-card:nth-child(6n+3) {
+    --card-rotation: -0.8deg;
+    border-left: 3px solid var(--chaos-yellow);
+    animation-delay: 0.2s;
+}
+
+.stream-card:nth-child(6n+4) {
+    --card-rotation: 1.5deg;
+    border-right: 3px solid var(--chaos-cyan);
+    animation-delay: 0.25s;
+}
+
+.stream-card:nth-child(6n+5) {
+    --card-rotation: -1.2deg;
+    border-left: 3px solid var(--chaos-orange);
+    animation-delay: 0.3s;
+}
+
+.stream-card:nth-child(6n) {
+    --card-rotation: 0.9deg;
+    border-right: 3px solid var(--chaos-purple);
+    animation-delay: 0.35s;
+}
+
+.stream-card:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.02) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border-color: var(--text-color);
+}
+
+/* Thumbnail with glitch effect */
+.stream-card-thumbnail {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+}
+
+.stream-card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.stream-card:hover .stream-card-thumbnail img {
+    transform: scale(1.05);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+/* Content area */
+.stream-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.stream-card-title {
+    font-family: var(--font-display-alt);
+    font-size: 1.5rem;
+    margin: 0 0 0.5em;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+    line-height: 1.2;
+}
+
+.stream-card-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.stream-card-title a:hover {
+    color: var(--chaos-yellow);
+}
+
+.stream-card-meta {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--secondary-text-color);
+    margin: 0 0 1em;
+}
+
+.stream-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 1em;
+}
+
+.stream-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+}
+
+/* Chaos colors for tags */
+.stream-tag:nth-child(5n+1) {
+    border-color: var(--chaos-green);
+    color: var(--chaos-green);
+}
+
+.stream-tag:nth-child(5n+2) {
+    border-color: var(--chaos-pink);
+    color: var(--chaos-pink);
+}
+
+.stream-tag:nth-child(5n+3) {
+    border-color: var(--chaos-yellow);
+    color: var(--chaos-yellow);
+}
+
+.stream-tag:nth-child(5n+4) {
+    border-color: var(--chaos-cyan);
+    color: var(--chaos-cyan);
+}
+
+.stream-tag:nth-child(5n) {
+    border-color: var(--chaos-orange);
+    color: var(--chaos-orange);
+}
+
+.stream-tag:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px currentColor;
+}
+
+.stream-card-excerpt {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--secondary-text-color);
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* === STREAM DETAIL PAGE - GLITCH & ENHANCED TIMESTAMPS === */
+
+.stream-detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.stream-detail-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin: 0.5em 0 0.3em;
+    position: relative;
+    text-align: left;
+}
+
+/* Glitch effect for stream title */
+.stream-title-glitch {
+    position: relative;
+    display: inline-block;
+    text-shadow:
+        2px 2px 0 var(--chaos-cyan),
+        -2px -2px 0 var(--chaos-pink);
+    animation: stream-title-glitch 5s infinite;
+}
+
+@keyframes stream-title-glitch {
+    0%, 90%, 100% {
+        transform: translate(0);
+        text-shadow:
+            2px 2px 0 var(--chaos-cyan),
+            -2px -2px 0 var(--chaos-pink);
+    }
+    91% {
+        transform: translate(-2px, 1px);
+        text-shadow:
+            3px 1px 0 var(--chaos-cyan),
+            -3px -1px 0 var(--chaos-pink);
+    }
+    92% {
+        transform: translate(2px, -1px);
+        text-shadow:
+            -2px 3px 0 var(--chaos-pink),
+            2px -3px 0 var(--chaos-cyan);
+    }
+    93% {
+        transform: translate(-2px, 1px);
+        text-shadow:
+            4px 0 0 var(--chaos-yellow),
+            -4px 0 0 var(--chaos-green);
+    }
+    94% {
+        transform: translate(0);
+        text-shadow:
+            2px 2px 0 var(--chaos-cyan),
+            -2px -2px 0 var(--chaos-pink);
+    }
+}
+
+.stream-detail-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.meta-item {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    padding: 6px 12px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+}
+
+.vod-badge {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    background-color: transparent;
+    border: 2px solid var(--chaos-green);
+    color: var(--chaos-green);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.vod-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--chaos-green);
+    opacity: 0.2;
+    transition: width 0.3s;
+    z-index: -1;
+}
+
+.vod-badge:hover::before {
+    width: 100%;
+}
+
+.vod-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.stream-detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2em;
+}
+
+.stream-tag-detail {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+}
+
+/* Chaos colors for detail tags */
+.stream-tag-detail:nth-child(5n+1) {
+    border-color: var(--chaos-green);
+    color: var(--chaos-green);
+}
+
+.stream-tag-detail:nth-child(5n+2) {
+    border-color: var(--chaos-pink);
+    color: var(--chaos-pink);
+}
+
+.stream-tag-detail:nth-child(5n+3) {
+    border-color: var(--chaos-yellow);
+    color: var(--chaos-yellow);
+}
+
+.stream-tag-detail:nth-child(5n+4) {
+    border-color: var(--chaos-cyan);
+    color: var(--chaos-cyan);
+}
+
+.stream-tag-detail:nth-child(5n) {
+    border-color: var(--chaos-orange);
+    color: var(--chaos-orange);
+}
+
+.stream-tag-detail:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px currentColor;
+}
+
+/* Enhanced timestamps */
+.stream-timestamps {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.stream-timestamps h3 {
+    font-family: var(--font-display-alt);
+    font-size: 1.8rem;
+    margin: 0 0 1em;
+    text-align: left;
+    color: var(--chaos-yellow);
+    text-shadow: 0 0 20px rgba(255, 237, 78, 0.3);
+}
+
+.timestamps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.timestamp-item {
+    margin: 0;
+}
+
+.timestamp-link {
+    display: flex;
+    gap: 15px;
+    align-items: baseline;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.timestamp-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* Random chaos colors for timestamps */
+.timestamp-item:nth-child(7n+1) .timestamp-link::before { background: var(--chaos-green); }
+.timestamp-item:nth-child(7n+2) .timestamp-link::before { background: var(--chaos-pink); }
+.timestamp-item:nth-child(7n+3) .timestamp-link::before { background: var(--chaos-yellow); }
+.timestamp-item:nth-child(7n+4) .timestamp-link::before { background: var(--chaos-cyan); }
+.timestamp-item:nth-child(7n+5) .timestamp-link::before { background: var(--chaos-orange); }
+.timestamp-item:nth-child(7n+6) .timestamp-link::before { background: var(--chaos-purple); }
+.timestamp-item:nth-child(7n) .timestamp-link::before { background: var(--chaos-green); }
+
+.timestamp-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.timestamp-link:hover::before {
+    opacity: 1;
+}
+
+.timestamp-time {
+    font-family: var(--font-mono);
+    color: var(--secondary-text-color);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    min-width: 4em;
+    font-weight: 500;
+}
+
+.timestamp-desc {
+    color: var(--text-color);
+    flex: 1;
+    line-height: 1.4;
+}
+
+/* Collapsible timestamps */
+.timestamps-more {
+    margin-top: 1.5em;
+}
+
+.timestamps-more summary {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid var(--chaos-cyan);
+    border-radius: 8px;
+    color: var(--chaos-cyan);
+    cursor: pointer;
+    transition: all 0.3s;
+    list-style: none;
+    text-align: center;
+    user-select: none;
+}
+
+.timestamps-more summary::-webkit-details-marker {
+    display: none;
+}
+
+.timestamps-more summary::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    transition: transform 0.3s;
+}
+
+.timestamps-more[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.timestamps-more summary:hover {
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    transform: scale(1.02);
+}
+
+.timestamps-more .timestamps-list {
+    margin-top: 1em;
+    animation: fade-in-up 0.4s ease-out;
+}
+
+.back-link {
+    margin-top: 3em;
+    text-align: left;
+}
+
+.back-link a {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.back-link a:hover {
+    color: var(--chaos-green);
+}
+
 @media (max-width: 600px) {
     /* Reduce chaos on mobile */
     .chaos-decor {
@@ -1801,14 +2326,102 @@ a {
         padding: var(--section-padding-mobile);
     }
 
-    /* Mobile: stack thumbnails vertically */
-    .stream-entry {
-        flex-direction: column;
+    /* Streams page mobile */
+    .streams-intro {
+        padding: 20px;
+        margin: 20px auto 40px;
+        transform: rotate(0deg) !important;
     }
 
-    .stream-entry-thumbnail {
-        width: 100%;
-        max-width: 300px;
+    .streams-intro h2 {
+        font-size: 1.8rem;
+    }
+
+    .streams-intro p {
+        font-size: 0.9rem;
+    }
+
+    .streams-grid-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 15px 40px;
+    }
+
+    /* Remove rotations on mobile stream cards */
+    .stream-card,
+    .stream-card:nth-child(n) {
+        transform: rotate(0deg) !important;
+        border-left: 2px solid rgba(255, 255, 255, 0.1) !important;
+        border-right: 2px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .stream-card-title {
+        font-size: 1.3rem;
+    }
+
+    .stream-card-meta {
+        font-size: 0.8rem;
+    }
+
+    .stream-card-excerpt {
+        font-size: 0.85rem;
+    }
+
+    /* Stream detail mobile */
+    .stream-detail {
+        padding: 20px 15px;
+    }
+
+    .stream-detail-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+
+    .stream-detail-meta {
+        gap: 8px;
+    }
+
+    .meta-item {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+
+    .vod-badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    .stream-detail-tags {
+        gap: 6px;
+    }
+
+    .stream-tag-detail {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+
+    .stream-timestamps h3 {
+        font-size: 1.4rem;
+    }
+
+    .timestamp-link {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+        padding: 10px 12px;
+    }
+
+    .timestamp-time {
+        font-size: 0.8rem;
+        min-width: auto;
+    }
+
+    .timestamp-desc {
+        font-size: 0.85rem;
+    }
+
+    .timestamps-more summary {
+        font-size: 0.85rem;
+        padding: 10px 16px;
     }
 
     /* Support page mobile */

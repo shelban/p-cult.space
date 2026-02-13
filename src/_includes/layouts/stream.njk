@@ -9,17 +9,23 @@ layout: layouts/base.njk
     </div>
     {% endif %}
 
-    <h2>{{ title }}</h2>
+    <h2 class="stream-detail-title">
+        <span class="stream-title-glitch">{{ title }}</span>
+    </h2>
 
-    <p class="stream-meta">
-        {{ date | dateDisplay }}
-        {% if duration %} · {{ duration }}{% endif %}
-        {% if vod_url %} · <a href="{{ vod_url }}" target="_blank">VOD</a>{% endif %}
-    </p>
+    <div class="stream-detail-meta">
+        <span class="meta-item">{{ date | dateDisplay }}</span>
+        {% if duration %}<span class="meta-item">{{ duration }}</span>{% endif %}
+        {% if vod_url %}
+        <a href="{{ vod_url }}" target="_blank" class="vod-badge">
+            <span>Дивитись VOD ▶</span>
+        </a>
+        {% endif %}
+    </div>
 
     {% if tags and tags.length > 1 %}
-    <div class="stream-tags">
-        {% for tag in tags %}{% if tag != "streams" %}<span>{{ tag }}</span>{% endif %}{% endfor %}
+    <div class="stream-detail-tags">
+        {% for tag in tags %}{% if tag != "streams" %}<span class="stream-tag-detail">{{ tag }}</span>{% endif %}{% endfor %}
     </div>
     {% endif %}
 
@@ -29,24 +35,55 @@ layout: layouts/base.njk
 
     {% if timestamps and timestamps.length > 0 %}
     <div class="stream-timestamps">
-        <h3>таймкоди</h3>
-        <ul>
+        <h3>таймкоди ({{ timestamps.length }})</h3>
+
+        {% set visibleCount = 10 %}
+        <ul class="timestamps-list">
             {% for ts in timestamps %}
-            <li>
+            {% if loop.index <= visibleCount %}
+            <li class="timestamp-item">
                 {% if vod_url %}
                 <a href="{{ vod_url }}&t={{ ts.time | timestampToSeconds }}" target="_blank" class="timestamp-link">
                     <span class="timestamp-time">{{ ts.time }}</span>
                     <span class="timestamp-desc">{{ ts.description }}</span>
                 </a>
                 {% else %}
-                <span class="timestamp-time">{{ ts.time }}</span>
-                <span class="timestamp-desc">{{ ts.description }}</span>
+                <div class="timestamp-link">
+                    <span class="timestamp-time">{{ ts.time }}</span>
+                    <span class="timestamp-desc">{{ ts.description }}</span>
+                </div>
                 {% endif %}
             </li>
+            {% endif %}
             {% endfor %}
         </ul>
+
+        {% if timestamps.length > visibleCount %}
+        <details class="timestamps-more">
+            <summary>Показати ще {{ timestamps.length - visibleCount }} таймкодів</summary>
+            <ul class="timestamps-list">
+                {% for ts in timestamps %}
+                {% if loop.index > visibleCount %}
+                <li class="timestamp-item">
+                    {% if vod_url %}
+                    <a href="{{ vod_url }}&t={{ ts.time | timestampToSeconds }}" target="_blank" class="timestamp-link">
+                        <span class="timestamp-time">{{ ts.time }}</span>
+                        <span class="timestamp-desc">{{ ts.description }}</span>
+                    </a>
+                    {% else %}
+                    <div class="timestamp-link">
+                        <span class="timestamp-time">{{ ts.time }}</span>
+                        <span class="timestamp-desc">{{ ts.description }}</span>
+                    </div>
+                    {% endif %}
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </details>
+        {% endif %}
     </div>
     {% endif %}
 </section>
 
-<p><a href="/streams/">← всі стріми</a></p>
+<p class="back-link"><a href="/streams/">← всі стріми</a></p>
