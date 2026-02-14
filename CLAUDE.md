@@ -205,6 +205,41 @@ Custom filters defined in `eleventy.config.js`:
 - User-facing text is Ukrainian (mixed with Russian/English where natural)
 - Tone: informal, personal, expressive
 
+## Working with Claude Code
+
+### Communication Style
+- **Act first, explain only on errors** - Don't narrate what you're about to do
+- **Concise responses** - No meta-commentary or unnecessary apologies
+- **Bilingual context** - Ukrainian for users, English for technical terms
+- **Command interpretation:**
+  - "добавь X" / "add X" → git add + commit (NOT .gitignore)
+  - "створи файл" → Write tool (NOT touch command)
+  - "виправ" → Edit tool (NOT sed/awk)
+
+### Data Integrity
+- **NEVER hallucinate data** - timestamps, file contents, metadata
+- **If data missing** - say "data not available", don't invent placeholders
+- **Read existing files** - use as reference before creating similar files
+- **Real examples only** - from codebase, not invented
+
+### Security
+- **Check for secrets** - before git operations (API keys, tokens, passwords)
+- **Verify .gitignore** - covers .env, credentials, tokens
+- **Use SSH keys** - no credential prompts
+- **Never commit** - API keys, passwords, access tokens
+
+### Testing
+- **Always run tests** - when available (npm build, npm test)
+- **Never suggest skipping** - to "save time"
+- **Report failures explicitly** - task incomplete if tests fail
+- **For this project** - verify `npm run build` succeeds before push
+
+### Git Workflow
+- **Verify identity** - git user matches eve/shelban@tutanota.de
+- **Descriptive commits** - in Ukrainian, follow existing style
+- **Check git status** - before and after operations
+- **Stage specific files** - avoid blanket "git add ."
+
 ## Common Issues
 
 **Build fails locally:**
