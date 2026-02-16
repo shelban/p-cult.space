@@ -13,10 +13,30 @@ description: "донати йдуть на культивацію особів"
     </h1>
   </div>
 
-  <div class="support-link">
-    <a href="https://donatello.to/personalities_cult" target="_blank" rel="noopener" class="donate-button">
-      <span class="donate-icon">💸</span>
-      <span class="donate-text">donatello.to/personalities_cult</span>
+  <div class="support-links">
+    <a href="https://donatello.to/personalities_cult" target="_blank" rel="noopener" class="donate-card">
+      <span class="donate-card-icon">💸</span>
+      <span class="donate-card-label">donatello</span>
+      <span class="donate-card-detail">donatello.to/personalities_cult</span>
     </a>
+
+    <div class="donate-card donate-card-btc" onclick="copyBtc(this)" role="button" tabindex="0">
+      <span class="donate-card-icon">₿</span>
+      <span class="donate-card-label">bitcoin</span>
+      <span class="donate-card-detail btc-address">bc1qmhhzu79n7h06djfl2enlvw8gxcq42w7wwwp49q</span>
+      <span class="donate-card-hint">click to copy</span>
+    </div>
   </div>
 </section>
+
+<script>
+function copyBtc(el) {
+  navigator.clipboard.writeText('bc1qmhhzu79n7h06djfl2enlvw8gxcq42w7wwwp49q');
+  el.classList.add('copied');
+  el.querySelector('.donate-card-hint').textContent = 'copied!';
+  setTimeout(() => {
+    el.classList.remove('copied');
+    el.querySelector('.donate-card-hint').textContent = 'click to copy';
+  }, 2000);
+}
+</script>
