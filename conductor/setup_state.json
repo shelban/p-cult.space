@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "project_type": "brownfield",
+  "completed_sections": ["product", "guidelines", "tech_stack", "workflow", "styleguides"],
+  "files_created": [
+    "conductor/index.md",
+    "conductor/product.md",
+    "conductor/product-guidelines.md",
+    "conductor/tech-stack.md",
+    "conductor/workflow.md",
+    "conductor/tracks.md",
+    "conductor/code_styleguides/css.md",
+    "conductor/code_styleguides/nunjucks.md"
+  ],
+  "started_at": "2026-02-27T00:00:00Z",
+  "last_updated": "2026-02-27T00:00:00Z"
+}
