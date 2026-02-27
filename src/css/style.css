@@ -42,6 +42,10 @@
     /* Utility */
     --hint-color: #666;
     --border-subtle: #333;
+
+    /* Persona sticker */
+    --sticker-size: 200px;
+    --sticker-size-mobile: 140px;
 }
 
 /* Grain texture overlay */
@@ -729,6 +733,10 @@ body:has(#about-me) section:hover {
     margin-top: -20px;
     animation-delay: 0.2s;
     border-left: 4px solid var(--chaos-green);
+    display: grid;
+    grid-template-columns: 1fr var(--sticker-size);
+    gap: 24px;
+    align-items: start;
 }
 
 .values {
@@ -2098,13 +2106,6 @@ a {
 }
 
 /* ===== Persona Sticker ===== */
-#about-me {
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    gap: 24px;
-    align-items: start;
-}
-
 .about-me-text {
     min-width: 0;
     position: relative;
@@ -2137,7 +2138,7 @@ a {
 
 .persona-sticker-wrap {
     position: relative;
-    width: 200px;
+    width: var(--sticker-size);
     transform: rotate(9deg) translateY(-30px);
     filter:
         drop-shadow(6px 6px 0px var(--chaos-pink))
@@ -2154,14 +2155,13 @@ a {
 }
 
 .persona-layer {
-    width: 200px;
+    width: 100%;
     display: block;
 }
 
 .persona-glitch {
     position: absolute;
     inset: 0;
-    width: 100%;
     opacity: 0;
     animation: glitch-flicker 7s infinite;
 }
@@ -2183,13 +2183,9 @@ a {
     }
 
     .persona-sticker-wrap {
-        width: 140px;
+        width: var(--sticker-size-mobile);
         transform: rotate(3deg);
         filter: drop-shadow(4px 4px 0px var(--chaos-pink));
         margin: 0 auto 8px;
-    }
-
-    .persona-layer {
-        width: 140px;
     }
 }
