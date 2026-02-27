@@ -2124,22 +2124,57 @@ a {
     z-index: 0;
 }
 
-.persona-sticker {
+/* glitch flicker: mostly clean, rare burst of RGB chaos */
+@keyframes glitch-flicker {
+    0%, 89%, 100%  { opacity: 0; }
+    90%            { opacity: 1; }
+    90.4%          { opacity: 0; }
+    90.8%          { opacity: 1; }
+    91.4%          { opacity: 0; }
+    91.8%          { opacity: 1; }
+    92.4%          { opacity: 0; }
+}
+
+.persona-sticker-wrap {
+    position: relative;
     width: 200px;
     transform: rotate(9deg) translateY(-30px);
     filter:
         drop-shadow(6px 6px 0px var(--chaos-pink))
         drop-shadow(-4px -4px 0px var(--chaos-cyan));
     transition: transform 0.3s ease, filter 0.3s ease;
-    position: relative;
     z-index: 5;
 }
 
-.persona-sticker:hover {
+.persona-sticker-wrap:hover {
     transform: rotate(3deg) translateY(-30px) scale(1.05);
     filter:
         drop-shadow(8px 8px 0px var(--chaos-cyan))
         drop-shadow(-4px -4px 0px var(--chaos-pink));
+}
+
+.persona-layer {
+    width: 200px;
+    display: block;
+}
+
+.persona-glitch {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    opacity: 0;
+    animation: glitch-flicker 7s infinite;
+}
+
+.persona-sticker-wrap:hover .persona-glitch {
+    opacity: 1;
+    animation: none;
+    transition: opacity 0.05s;
+}
+
+.persona-sticker-wrap:hover .persona-clean {
+    opacity: 0;
+    transition: opacity 0.05s;
 }
 
 @media (max-width: 600px) {
@@ -2147,11 +2182,14 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .persona-sticker {
+    .persona-sticker-wrap {
         width: 140px;
         transform: rotate(3deg);
         filter: drop-shadow(4px 4px 0px var(--chaos-pink));
-        display: block;
         margin: 0 auto 8px;
+    }
+
+    .persona-layer {
+        width: 140px;
     }
 }
