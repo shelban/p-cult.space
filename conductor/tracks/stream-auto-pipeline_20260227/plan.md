@@ -45,13 +45,16 @@ Scripts live in `n8n-content-processing/scripts/`.
 - [x] **Task 1.4**: `scripts/gen-stream-entry` — orchestrates get-youtube-meta + analyze-transcript,
   builds .md frontmatter, pushes to GitHub via Contents API. Plus n8n workflow template.
   Updated approach: GitHub push (not Notion — see decision note above) `48eb37a`
-- [ ] **Task 1.5**: Test full chain: real SRT file → Notion Draft created with all fields
+- [x] **Task 1.5**: Test full chain: real YouTube URL → .md pushed to GitHub ✅
+  Tested (GitHub push): youtu.be/325RrR-sqKU → 2026-02-12-325rrr-sqku.md → shelban/p-cult.space
+  Tested (--output local): youtu.be/KYb0EkDIuFY → /tmp/test-stream-entry.md (2026-03-12)
+  (full pipeline with SRT pending real new stream)
 
 ### Verification
 
 - [ ] **Verify 1.1**: `analyze-transcript --srt test.srt` outputs valid JSON with all 4 fields
-- [ ] **Verify 1.2**: Notion Draft created with correct title, tags, timestamps from transcript
-- [ ] **Verify 1.3**: n8n workflow runs end-to-end without error on real stream data
+- [x] **Verify 1.2**: End-to-end GitHub push verified: YouTube URL → .md in shelban/p-cult.space `src/streams/` ✅
+- [ ] **Verify 1.3**: n8n workflow template runs end-to-end without error on real stream data
 
 ---
 
@@ -128,7 +131,7 @@ Scripts live in `n8n-content-processing/scripts/`.
 
 | Phase   | Checkpoint SHA | Date | Status  |
 | ------- | -------------- | ---- | ------- |
-| Phase 1 |                |      | pending |
+| Phase 1 | 5193e65        | 2026-03-12 | partial (Verify 1.1+1.3 pending SRT/n8n test) |
 | Phase 2 |                |      | pending |
 | Phase 3 |                |      | pending |
 | Phase 4 |                |      | pending |
