@@ -138,13 +138,20 @@ Scripts live in `n8n-content-processing/scripts/`.
 
 ---
 
-## Open Infra Decisions (block Phase 2+)
+## Infra Decisions
 
-1. **Orchestration runtime**: Local machine (always on?) or VPS?
-   If local: needs to be running when stream ends (ок if streaming from same machine)
-   If VPS: needs file transfer step for VOD (large files)
+1. **Orchestration runtime**: ✅ **VPS (AWS EC2)** — decided 2026-03-19
+   Eve already started EC2 setup, interrupted by power outages (wartime).
+   Resume EC2 provisioning when ready.
 
-2. **YouTube OAuth**: one-time setup needed (run auth flow, store refresh token)
+2. **Workflow engine**: ✅ **OpenClaw** (self-hosted AI agent, open-source) — decided 2026-03-19
+   Replaces n8n consideration. OpenClaw runs on VPS, 50+ integrations.
+   ⚠️ Security: vet ClawHub packages carefully (Bitdefender found ~20% malicious in registry Feb 2026).
 
-3. **n8n vs systemd**: n8n = visual, easier to debug. systemd = simpler deps.
-   Recommendation: n8n since already in stack (task #15)
+3. **YouTube OAuth**: still needed — one-time setup on EC2 instance
+
+## Open Infra Decisions (remaining)
+
+1. **EC2 instance type**: t3.small? t3.medium? Depends on VOD processing needs.
+2. **Storage**: EBS volume size for VOD temp storage during processing.
+3. **OpenClaw version/config**: which AgentSkills to enable, security hardening.

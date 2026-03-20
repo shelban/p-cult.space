@@ -1,0 +1,24 @@
+{
+  "id": "tamagochiv_20260319",
+  "title": "Tamagochiv — Audience Relationship Engine MVP-1",
+  "type": "feature",
+  "status": "pending",
+  "priority": "high",
+  "created": "2026-03-19",
+  "updated": "2026-03-19",
+  "started": null,
+  "completed": null,
+  "phases": {
+    "total": 0,
+    "current": 0,
+    "completed": 0
+  },
+  "tasks": {
+    "total": 0,
+    "completed": 0,
+    "in_progress": 0,
+    "pending": 0
+  },
+  "tags": ["telegram", "bot", "gamification", "audience", "python", "fastapi"],
+  "notes": "Separate repo from p-cult.space. Conductor track lives here for project management; code lives in its own repo."
+}
