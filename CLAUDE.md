@@ -236,7 +236,7 @@ Custom filters defined in `eleventy.config.js`:
 
 ### Git Workflow
 - **Verify identity** - git user matches eve/shelban@tutanota.de
-- **Descriptive commits** - in Ukrainian, follow existing style
+- **Descriptive commits** - in English, imperative style ("Add BTC donate card to support page")
 - **Check git status** - before and after operations
 - **Stage specific files** - avoid blanket "git add ."
 
