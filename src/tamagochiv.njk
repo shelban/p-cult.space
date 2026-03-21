@@ -1,0 +1,105 @@
+---
+layout: layouts/base.njk
+title: тамаґоч-ів
+permalink: /tamagochiv/
+description: "піксельна версія ів — тамаґочі-дешборд для культивації особів"
+---
+
+{% include "chaos-decorations.njk" %}
+
+<div class="tama-device">
+  <div class="tama-screen">
+    <div class="tama-scanlines" aria-hidden="true"></div>
+
+    {# Pixel art character #}
+    <div class="tama-character-area">
+      <div class="tama-pixel-bob">
+        <div class="tama-pixel-glitch">
+          <div class="tama-pixel" role="img" aria-label="Піксельна ів"></div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="tama-name">тамаґоч-ів</h2>
+    <p class="tama-tagline">піксельна версія ів // lvl 30</p>
+
+    {# Status bars #}
+    <div class="tama-stats">
+      <div class="tama-stat">
+        <span class="tama-stat-label">HP</span>
+        <div class="tama-bar"><div class="tama-bar-fill tama-bar-hp"></div></div>
+      </div>
+      <div class="tama-stat">
+        <span class="tama-stat-label">EN</span>
+        <div class="tama-bar"><div class="tama-bar-fill tama-bar-en"></div></div>
+      </div>
+      <div class="tama-stat">
+        <span class="tama-stat-label">MOOD</span>
+        <div class="tama-bar"><div class="tama-bar-fill tama-bar-mood"></div></div>
+      </div>
+    </div>
+
+    <div class="tama-divider"></div>
+
+    {# Daily dashboard #}
+    <h3 class="tama-section-title">// сьогодні</h3>
+
+    <div class="tama-schedule">
+      <div class="tama-schedule-col">
+        <div class="tama-slot tama-act-stream"><span class="tama-time">00</span><span class="tama-act-text">стрім</span></div>
+        <div class="tama-slot tama-act-stream"><span class="tama-time">01</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-chill"><span class="tama-time">02</span><span class="tama-act-text">чіл</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">03</span><span class="tama-act-text">сон</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">04</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">05</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">06</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">07</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">08</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">09</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">10</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-sleep"><span class="tama-time">11</span><span class="tama-act-text">сон</span></div>
+      </div>
+      <div class="tama-schedule-col">
+        <div class="tama-slot tama-act-wake"><span class="tama-time">12</span><span class="tama-act-text">підйом</span></div>
+        <div class="tama-slot tama-act-food"><span class="tama-time">13</span><span class="tama-act-text">каву+їжа</span></div>
+        <div class="tama-slot tama-act-code"><span class="tama-time">14</span><span class="tama-act-text">код</span></div>
+        <div class="tama-slot tama-act-code"><span class="tama-time">15</span><span class="tama-act-text">код</span></div>
+        <div class="tama-slot tama-act-content"><span class="tama-time">16</span><span class="tama-act-text">контент</span></div>
+        <div class="tama-slot tama-act-chill"><span class="tama-time">17</span><span class="tama-act-text">прогул</span></div>
+        <div class="tama-slot tama-act-obs"><span class="tama-time">18</span><span class="tama-act-text">OBS чек</span></div>
+        <div class="tama-slot tama-act-stream"><span class="tama-time">19</span><span class="tama-act-text">стрім</span></div>
+        <div class="tama-slot tama-act-stream"><span class="tama-time">20</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-stream"><span class="tama-time">21</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-stream"><span class="tama-time">22</span><span class="tama-act-text">·</span></div>
+        <div class="tama-slot tama-act-stream"><span class="tama-time">23</span><span class="tama-act-text">стрім</span></div>
+      </div>
+    </div>
+
+    <div class="tama-divider"></div>
+
+    {# Notes #}
+    <div class="tama-notes">
+      <span class="tama-section-label">// нотатки</span>
+      <p>проснулась пізніше ніж планувала. зафіксувала ідею для нового формату стрімів. вечором стрім — тема: AuDHD productivity tips. треба ще допилити тамагочі-бота і почати тестити на собі</p>
+    </div>
+
+    {# Tasks #}
+    <div class="tama-tasks">
+      <span class="tama-section-label">// задачі</span>
+      <ul>
+        <li class="tama-task-done">закоммитити зміни в сайт</li>
+        <li class="tama-task-done">перевірити OBS сцени</li>
+        <li>допилити тамагочі-бота</li>
+        <li>записати ідею для тікток</li>
+      </ul>
+    </div>
+
+  </div>
+
+  {# Device buttons #}
+  <div class="tama-buttons" aria-hidden="true">
+    <div class="tama-btn"></div>
+    <div class="tama-btn tama-btn-main"></div>
+    <div class="tama-btn"></div>
+  </div>
+</div>
