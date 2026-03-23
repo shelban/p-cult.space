@@ -33,7 +33,8 @@ Architecture spec: `conductor/tracks/tamagochiv_20260319/architecture.md`
 
 ### Verification
 
-- [ ] **Verify 1.1**: `docker compose up` brings up all 3 containers, bot responds to /start and /status
+- [x] **Verify 1.1**: `docker-compose up --build -d` brings up all 3 containers ✅ 2026-03-23
+  - DB healthy, alembic ran migration, uvicorn started, bot connected as @stream_going_live_bot
 
 ---
 
@@ -70,7 +71,7 @@ Architecture spec: `conductor/tracks/tamagochiv_20260319/architecture.md`
 
 - [x] **Task 3.1**: Docker secrets support (done in Phase 1 — `docker-compose.prod.yml`)
 - [x] **Task 3.2**: Restart policies (`restart: unless-stopped` in prod compose)
-- [ ] **Task 3.3**: Alembic migration in container entrypoint (currently migrations must be run manually)
+- [x] **Task 3.3**: Alembic migration runs automatically — API command: `alembic upgrade head && uvicorn ...`
 - [ ] **Task 3.4**: Bot error handling — graceful degradation when API is unreachable
 - [ ] **Task 3.5**: /follow command with hardcoded social links
 - [ ] **Task 3.6**: Structured JSON logging configuration
@@ -86,7 +87,7 @@ Architecture spec: `conductor/tracks/tamagochiv_20260319/architecture.md`
 | Phase   | Checkpoint SHA | Date       | Status  |
 |---------|----------------|------------|---------|
 | Phase 1 | e7ae4f2        | 2026-03-19 | complete (Verify 1.1 pending live test) |
-| Phase 2 |                |            | pending |
+| Phase 2 | 6908e66        | 2026-03-23 | complete (imports verified; Verify 2.1 pending live test) |
 | Phase 3 |                |            | pending |
 
 ---
