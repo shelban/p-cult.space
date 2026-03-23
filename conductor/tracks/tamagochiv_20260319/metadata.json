@@ -2,23 +2,25 @@
   "id": "tamagochiv_20260319",
   "title": "Tamagochiv — Audience Relationship Engine MVP-1",
   "type": "feature",
-  "status": "pending",
+  "status": "in_progress",
   "priority": "high",
   "created": "2026-03-19",
-  "updated": "2026-03-19",
-  "started": null,
+  "updated": "2026-03-23",
+  "started": "2026-03-19",
   "completed": null,
+  "current_phase": 2,
+  "current_task": "2.1",
   "phases": {
-    "total": 0,
-    "current": 0,
-    "completed": 0
+    "total": 3,
+    "current": 2,
+    "completed": 1
   },
   "tasks": {
-    "total": 0,
-    "completed": 0,
+    "total": 19,
+    "completed": 11,
     "in_progress": 0,
-    "pending": 0
+    "pending": 8
   },
   "tags": ["telegram", "bot", "gamification", "audience", "python", "fastapi"],
-  "notes": "Separate repo from p-cult.space. Conductor track lives here for project management; code lives in its own repo."
+  "notes": "Separate repo from p-cult.space. Code lives in ~/git-repos/tamagochiv/. Phase 1 committed 2026-03-19 (e7ae4f2). Phase 2 services stubbed, pending implementation."
 }
