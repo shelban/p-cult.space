@@ -72,9 +72,15 @@ Architecture spec: `conductor/tracks/tamagochiv_20260319/architecture.md`
 - [x] **Task 3.1**: Docker secrets support (done in Phase 1 — `docker-compose.prod.yml`)
 - [x] **Task 3.2**: Restart policies (`restart: unless-stopped` in prod compose)
 - [x] **Task 3.3**: Alembic migration runs automatically — API command: `alembic upgrade head && uvicorn ...`
-- [ ] **Task 3.4**: Bot error handling — graceful degradation when API is unreachable
-- [ ] **Task 3.5**: /follow command with hardcoded social links
-- [ ] **Task 3.6**: Structured JSON logging configuration
+- [x] **Task 3.4**: Bot error handling — graceful degradation when API is unreachable
+  - Middleware: fallback db_user with public access when API down
+  - All public + admin handlers: try/except for httpx connection/timeout/status errors
+  - Friendly "API temporarily unavailable" message to users
+- [x] **Task 3.5**: /follow command with hardcoded social links (already done in Phase 2)
+- [x] **Task 3.6**: Structured JSON logging configuration
+  - `shared/logging_config.py` — JSON formatter with timestamp, level, logger, message, exception
+  - Wired into both `bot/main.py` and `app/main.py`
+  - Library noise suppressed (httpx, httpcore, aiogram, uvicorn.access, sqlalchemy)
 
 ### Verification
 
@@ -88,7 +94,7 @@ Architecture spec: `conductor/tracks/tamagochiv_20260319/architecture.md`
 |---------|----------------|------------|---------|
 | Phase 1 | e7ae4f2        | 2026-03-19 | complete (Verify 1.1 pending live test) |
 | Phase 2 | 6908e66        | 2026-03-23 | complete (imports verified; Verify 2.1 pending live test) |
-| Phase 3 |                |            | pending |
+| Phase 3 |                | 2026-03-23 | tasks complete (Verify 3.1 pending live test) |
 
 ---
 
