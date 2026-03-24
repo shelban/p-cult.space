@@ -235,7 +235,7 @@ Custom filters defined in `eleventy.config.js`:
 - **For this project** - verify `npm run build` succeeds before push
 
 ### Git Workflow
-- **Verify identity** - git user matches eve/shelban@tutanota.de
+- **Verify identity** - git user matches the intended public repo identity
 - **Descriptive commits** - in English, imperative style ("Add BTC donate card to support page")
 - **Check git status** - before and after operations
 - **Stage specific files** - avoid blanket "git add ."
