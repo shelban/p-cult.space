@@ -4,6 +4,7 @@
   "description": "культ особ — Twitch streams hub",
   "scripts": {
     "build": "eleventy",
+    "test": "node --test",
     "serve": "eleventy --serve"
   },
   "devDependencies": {

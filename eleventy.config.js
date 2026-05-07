@@ -1,3 +1,12 @@
+const {
+  createStreamsArchive,
+  createTimestampGroups,
+  extractStreamTags,
+  formatDateDisplay,
+  streamExcerpt,
+  timestampToSeconds,
+} = require("./lib/streams-archive");
+
 module.exports = function (eleventyConfig) {
   // Passthrough copy for static assets
   eleventyConfig.addPassthroughCopy("src/css");
@@ -6,9 +15,7 @@ module.exports = function (eleventyConfig) {
 
   // Streams collection sorted by date descending
   eleventyConfig.addCollection("streams", function (collectionApi) {
-    return collectionApi
-      .getFilteredByGlob("src/streams/*.md")
-      .sort((a, b) => b.date - a.date);
+    return createStreamsArchive(collectionApi.getFilteredByGlob("src/streams/*.md"));
   });
 
   // Friends collection with random sorting (Fisher-Yates shuffle)
@@ -33,42 +40,17 @@ module.exports = function (eleventyConfig) {
   });
 
   // Date formatting filter
-  eleventyConfig.addFilter("dateDisplay", function (date) {
-    return new Date(date).toLocaleDateString("uk-UA", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  });
+  eleventyConfig.addFilter("dateDisplay", formatDateDisplay);
 
   // Convert timestamp HH:MM:SS to seconds for YouTube links
-  eleventyConfig.addFilter("timestampToSeconds", function (timestamp) {
-    if (!timestamp) return 0;
+  eleventyConfig.addFilter("timestampToSeconds", timestampToSeconds);
 
-    const parts = timestamp.split(":").map(p => parseInt(p, 10));
+  eleventyConfig.addFilter("streamTags", extractStreamTags);
 
-    // Validate that all parts are valid numbers
-    if (parts.some(isNaN)) return 0;
-
-    if (parts.length === 3) {
-      // HH:MM:SS
-      return parts[0] * 3600 + parts[1] * 60 + parts[2];
-    } else if (parts.length === 2) {
-      // MM:SS
-      return parts[0] * 60 + parts[1];
-    } else if (parts.length === 1) {
-      // SS
-      return parts[0];
-    }
-
-    return 0;
-  });
+  eleventyConfig.addFilter("streamTimestampGroups", createTimestampGroups);
 
   // Truncate text to specified length with ellipsis
-  eleventyConfig.addFilter("truncate", function (text, length) {
-    if (!text || text.length <= length) return text;
-    return text.substring(0, length).trim() + "...";
-  });
+  eleventyConfig.addFilter("truncate", streamExcerpt);
 
   return {
     dir: {

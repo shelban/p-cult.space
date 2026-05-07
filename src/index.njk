@@ -51,14 +51,14 @@ title: культивація особів
     <p>Може пройде пів року чи пару і я десь лаконічно поясню різницю. Вірим надіємося але по факту воно нахуй непотрібно :)</p>
 </section>
 
-{% set latestStreams = collections.streams | reverse %}
+{% set latestStreams = collections.streams %}
 {% if latestStreams.length > 0 %}
 <section>
     <h2><a href="/streams/">стріми</a></h2>
     <div class="stream-list">
         {% for stream in latestStreams %}{% if loop.index <= 3 %}
         <div class="stream-entry">
-            <h3><a href="{{ stream.url }}">{{ stream.data.title }}</a></h3>
+            <h3><a href="{{ stream.url }}">{{ stream.title }}</a></h3>
             <p class="stream-meta">{{ stream.date | dateDisplay }}</p>
         </div>
         {% endif %}{% endfor %}
